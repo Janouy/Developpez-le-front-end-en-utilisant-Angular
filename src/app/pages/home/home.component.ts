@@ -1,18 +1,30 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { OlympicService } from 'src/app/core/services/olympic.service';
+import { Olympic } from '../../core/models/Olympic';
 
 @Component({
-  selector: 'app-home',
-  templateUrl: './home.component.html',
-  styleUrls: ['./home.component.scss'],
+	selector: 'app-home',
+	templateUrl: './home.component.html',
+	styleUrls: ['./home.component.scss'],
 })
 export class HomeComponent implements OnInit {
-  public olympics$: Observable<any> = of(null);
+	public olympics$!: Observable<Olympic[]>;
+	title!: string;
+	numbersOfCountries!: number;
+	numberOfJos!: number;
 
-  constructor(private olympicService: OlympicService) {}
+	constructor(private olympicService: OlympicService) {}
 
-  ngOnInit(): void {
-    this.olympics$ = this.olympicService.getOlympics();
-  }
+	ngOnInit(): void {
+		this.olympics$ = this.olympicService.getOlympics();
+		this.olympics$.subscribe((olympics) => {
+			if (olympics && olympics.length > 0) {
+				this.numbersOfCountries = olympics.length;
+				const allYears = olympics.flatMap((country) => country.participations.map((p) => p.year));
+				const uniqueYears = new Set(allYears);
+				this.numberOfJos = uniqueYears.size;
+			}
+		});
+	}
 }
