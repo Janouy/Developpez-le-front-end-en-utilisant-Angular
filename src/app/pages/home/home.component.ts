@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Observable, of } from 'rxjs';
+import { Observable } from 'rxjs';
 import { OlympicService } from 'src/app/core/services/olympic.service';
 import { Olympic } from '../../core/models/Olympic';
 
@@ -10,6 +10,8 @@ import { Olympic } from '../../core/models/Olympic';
 })
 export class HomeComponent implements OnInit {
 	public olympics$!: Observable<Olympic[]>;
+	public errorMessage$!: Observable<string | null>;
+	public loading$!: Observable<boolean>;
 	title!: string;
 	numbersOfCountries!: number;
 	numberOfJos!: number;
@@ -26,5 +28,7 @@ export class HomeComponent implements OnInit {
 				this.numberOfJos = uniqueYears.size;
 			}
 		});
+		this.errorMessage$ = this.olympicService.getErrorMessage();
+		this.loading$ = this.olympicService.isLoading();
 	}
 }

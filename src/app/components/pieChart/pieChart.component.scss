@@ -1,16 +1,10 @@
 ::ng-deep .ngx-charts-tooltip-content {
-	white-space: pre;
 	background-color: #04838f !important;
-	color: white !important;
-	font-size: medium !important;
-	font-weight: lighter !important;
-	padding: 0 10px 0 10px 0 !important;
 }
 
 ::ng-deep ngx-tooltip-content.ngx-charts-tooltip-content.type-tooltip .tooltip-caret.position-top {
 	border-top-color: #04838f;
 }
-
 ::ng-deep .pie-label {
 	font-size: 16px !important;
 }
