@@ -1,0 +1,21 @@
+<div class="flex flex-col items-center mt-4 px-4 sm:px-6 md:px-8 ">
+    <ng-container *ngIf="loading$ | async; else notLoading">
+        <app-loading />
+    </ng-container>
+    <ng-template #notLoading>
+        <ng-container *ngIf="(errorMessage$ | async) as errorMessage; else showContent">
+            <app-error [message]="errorMessage" />
+        </ng-container>
+        <ng-template #showContent>
+            <ng-container *ngIf="olympic;">
+                <app-label [title]="olympic.country" class="w-full max-w-sm titleLabel" />
+                <div class="flex flex-col sm:flex-row sm:justify-center sm:items-stretch mt-4 w-full max-w-3xl">
+                    <app-label class="m-2 flex-1 label" [title]="'Number of entries'" [value]="entries" />
+                    <app-label class="m-2 flex-1 label" [title]="'Total number medals'" [value]="medals" />
+                    <app-label class="m-2 flex-1 label" [title]="'Total number of athletes'" [value]="athletes" />
+                </div>
+            </ng-container>
+        </ng-template>
+        <app-line-chart [olympic]="olympic" />
+    </ng-template>
+</div>
