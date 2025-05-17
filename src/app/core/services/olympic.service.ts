@@ -15,6 +15,10 @@ export class OlympicService {
 
 	constructor(private http: HttpClient) {}
 
+	/**
+	 * Loads the initial data for Olympic entries from the backend API.
+	 * @returns An Observable emitting the Olympic data array or an empty array on error.
+	 */
 	loadInitialData() {
 		this.loading$.next(true);
 		this.errorMessage$.next(null);
@@ -42,11 +46,16 @@ export class OlympicService {
 		return this.errorMessage$.asObservable();
 	}
 
+	/**
+	 * Builds a user-friendly error message based on the HTTP error response.
+	 * @param err - The HTTP error response object received from the backend.
+	 * @returns A formatted string describing the error.
+	 */
 	private _buildErrorMessage(err: HttpErrorResponse): string {
 		if (err.error instanceof ErrorEvent) {
-			return `Erreur réseau : ${err.error.message}`;
+			return `Network error : ${err.error.message}`;
 		} else {
-			return `Le serveur a répondu avec le code ${err.status} (${err.statusText}).`;
+			return `The server responded with the code ${err.status} (${err.statusText}).`;
 		}
 	}
 }
