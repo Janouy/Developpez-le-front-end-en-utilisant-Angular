@@ -19,6 +19,9 @@ export class ErrorComponent {
 		Object.assign(this, this.message);
 	}
 
+	/**
+	 * Reloads the application by navigating to the root route ('/').
+	 */
 	reload(): void {
 		this.router.navigateByUrl(`/`);
 	}

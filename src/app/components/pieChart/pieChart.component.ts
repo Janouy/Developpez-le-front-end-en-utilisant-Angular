@@ -33,6 +33,12 @@ export class PieChartComponent implements OnChanges {
 			});
 		}
 	}
+
+	/**
+	 * Handles chart element selection by navigating to a detail page.
+	 * @param data - The selected chart data containing additional info in the `extra` property.
+	 * Navigates to the route `detail/:id` using the value from `data.extra`.
+	 */
 	onSelect(data: ChartData): void {
 		this.router.navigateByUrl(`detail/${data.extra}`);
 	}

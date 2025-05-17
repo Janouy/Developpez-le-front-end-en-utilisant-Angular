@@ -36,6 +36,9 @@ export class LineChartComponent implements OnChanges, OnInit {
 		window.addEventListener('resize', () => this.setChartView());
 	}
 
+	/**
+	 * Sets the chart view dimensions based on the current window width.
+	 */
 	setChartView() {
 		if (window.innerWidth > 768) {
 			this.view = [768, 400];
