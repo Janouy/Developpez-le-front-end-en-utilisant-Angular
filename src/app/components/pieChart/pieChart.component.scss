@@ -1,0 +1,10 @@
+::ng-deep .ngx-charts-tooltip-content {
+	background-color: #04838f !important;
+}
+
+::ng-deep ngx-tooltip-content.ngx-charts-tooltip-content.type-tooltip .tooltip-caret.position-top {
+	border-top-color: #04838f;
+}
+::ng-deep .pie-label {
+	font-size: 16px !important;
+}

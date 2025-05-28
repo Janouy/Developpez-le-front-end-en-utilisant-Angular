@@ -1,1 +1,22 @@
-/* You can add global styles to this file, and also import other style files */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+	max-height: 100vh;
+	margin: 0;
+}
+.titleLabel {
+	background-color: #04838f;
+	color: white;
+	border: 2px solid #04838f;
+	font-size: 32px;
+	border-radius: 10px;
+	padding: 5px 0;
+}
+
+.label {
+	border: 2px solid #04838f;
+	font-size: 20px;
+	border-radius: 10px;
+}

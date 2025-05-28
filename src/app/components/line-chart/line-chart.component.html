@@ -1,0 +1,23 @@
+<div class="mt-12 w-full max-w-2xl mx-auto ">
+    <div class="relative flex justify-center">
+        <ng-container *ngIf="formatedOlympicData; else noData">
+            <ngx-charts-line-chart [view]="view" [results]="formatedOlympicData" [xAxis]="xAxis" [yAxis]="yAxis"
+                [showXAxisLabel]="showXAxisLabel" [showYAxisLabel]="showYAxisLabel" [xAxisLabel]="xAxisLabel"
+                [yAxisLabel]="yAxisLabel" [yScaleMin]="yScaleMin" [autoScale]="true">
+                <ng-template #tooltipTemplate let-model="model">
+                    <div>
+                        <span>🏅{{model.value}}</span>
+                    </div>
+                </ng-template>
+                <ng-template #seriesTooltipTemplate let-model="model">
+                    <div>
+                        <span>🏅{{model[0].value}}</span>
+                    </div>
+                </ng-template>
+            </ngx-charts-line-chart>
+        </ng-container>
+        <ng-template #noData>
+            <div>No data to show</div>
+        </ng-template>
+    </div>
+</div>
