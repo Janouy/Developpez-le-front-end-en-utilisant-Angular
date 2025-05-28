@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, Subject, takeUntil } from 'rxjs';
 import { OlympicService } from 'src/app/core/services/olympic.service';
 import { Olympic } from '../../core/models/Olympic';
 
@@ -10,6 +10,7 @@ import { Olympic } from '../../core/models/Olympic';
 })
 export class HomeComponent implements OnInit {
 	public olympics$!: Observable<Olympic[]>;
+	private destroy$!: Subject<boolean>;
 	public errorMessage$!: Observable<string | null>;
 	public loading$!: Observable<boolean>;
 	title!: string;
@@ -19,8 +20,9 @@ export class HomeComponent implements OnInit {
 	constructor(private olympicService: OlympicService) {}
 
 	ngOnInit(): void {
+		this.destroy$ = new Subject<boolean>();
 		this.olympics$ = this.olympicService.getOlympics();
-		this.olympics$.subscribe((olympics) => {
+		this.olympics$.pipe(takeUntil(this.destroy$)).subscribe((olympics) => {
 			if (olympics && olympics.length > 0) {
 				this.numbersOfCountries = olympics.length;
 				const allYears = olympics.flatMap((country) => country.participations.map((p) => p.year));
@@ -30,5 +32,9 @@ export class HomeComponent implements OnInit {
 		});
 		this.errorMessage$ = this.olympicService.getErrorMessage();
 		this.loading$ = this.olympicService.isLoading();
+	}
+	ngOnDestroy(): void {
+		this.destroy$.next(true);
+		this.destroy$.complete();
 	}
 }
