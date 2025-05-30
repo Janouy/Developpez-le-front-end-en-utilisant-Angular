@@ -1,5 +1,15 @@
 # OlympicGamesStarter
 
+This project provides users with interactive visualizations of past Olympic Games results.
+
+Features
+
+Home Page
+Displays a pie chart showing the total number of medals won by each country across all Olympic Games.
+
+Country Detail Page
+Allows users to select a country and view a line chart representing the number of medals it won in each Olympic edition.
+
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 18.0.3.
 
 Don't forget to install your node_modules before starting (`npm install`).
