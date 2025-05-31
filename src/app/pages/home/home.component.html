@@ -1,5 +1,4 @@
 <div class="flex flex-col items-center mt-4 px-4 sm:px-6 md:px-8">
-    <app-label [title]="'Medals per Country'" class="w-full max-w-sm titleLabel" />
     <ng-container *ngIf="loading$ | async; else notLoading">
         <app-loading />
     </ng-container>
@@ -8,15 +7,19 @@
             <app-error [message]="errorMessage" />
         </ng-container>
         <ng-template #showContent>
-            <div class="flex flex-col sm:flex-row sm:justify-center sm:items-stretch mt-4 w-full max-w-3xl">
-                <app-label class="m-2 flex-1 label" [title]="'Number of JOs'" [value]="numberOfJos" />
-                <app-label class="m-2 flex-1 label" [title]="'Number of countries'" [value]="numbersOfCountries" />
-            </div>
-            <ng-container *ngIf="olympics$ | async as olympics">
+            <ng-container *ngIf="olympics$ | async as olympics; else noData">
+                <app-label [title]="'Medals per Country'" class="w-full max-w-sm titleLabel" />
+                <div class="flex flex-col sm:flex-row sm:justify-center sm:items-stretch mt-4 w-full max-w-3xl">
+                    <app-label class="m-2 flex-1 label" [title]="'Number of JOs'" [value]="numberOfJos" />
+                    <app-label class="m-2 flex-1 label" [title]="'Number of countries'" [value]="numbersOfCountries" />
+                </div>
                 <div class="w-full max-w-5xl mt-6">
                     <app-pieChart [olympics]="olympics" />
                 </div>
             </ng-container>
+            <ng-template #noData>
+                <div>No data to show</div>
+            </ng-template>
         </ng-template>
     </ng-template>
 </div>

@@ -1,4 +1,6 @@
 import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { faMedal } from '@fortawesome/free-solid-svg-icons';
 import { BrowserModule } from '@angular/platform-browser';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { NgxChartsModule } from '@swimlane/ngx-charts';
@@ -9,7 +11,7 @@ import { LineChartdata } from '../../core/models/LineChartData';
 @Component({
 	selector: 'app-line-chart',
 	standalone: true,
-	imports: [BrowserModule, NgxChartsModule, NoopAnimationsModule],
+	imports: [BrowserModule, NgxChartsModule, NoopAnimationsModule, FontAwesomeModule],
 	templateUrl: './line-chart.component.html',
 	styleUrl: './line-chart.component.scss',
 })
@@ -17,6 +19,7 @@ export class LineChartComponent implements OnChanges, OnInit {
 	@Input() olympic: Olympic | null = null;
 	@Input() formatedOlympicData!: LineChartdata[];
 	participations: Participation[] | null = null;
+	faMedal = faMedal;
 
 	xAxis: boolean = true;
 	yAxis: boolean = true;

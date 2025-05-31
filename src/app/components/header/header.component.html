@@ -1,9 +1,9 @@
 <header>
-    <div>
+    <div class="min-h-16 leading-6 text-sm">
         <div class="text-4xl mb-2">
             <a routerLink="" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}">Olympic games app</a>
         </div>
-        <div>
+        <div *ngIf="currentPath !== homePath">
             <a routerLink="" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}">Retour</a>
         </div>
     </div>

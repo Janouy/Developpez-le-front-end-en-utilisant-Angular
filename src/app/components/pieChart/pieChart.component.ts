@@ -1,4 +1,6 @@
 import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { faMedal } from '@fortawesome/free-solid-svg-icons';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgxChartsModule } from '@swimlane/ngx-charts';
 import { Olympic } from '../../core/models/Olympic';
@@ -8,21 +10,22 @@ import { Router } from '@angular/router';
 @Component({
 	selector: 'app-pieChart',
 	standalone: true,
-	imports: [BrowserModule, NgxChartsModule],
+	imports: [BrowserModule, NgxChartsModule, FontAwesomeModule],
 	templateUrl: './pieChart.component.html',
 	styleUrl: './pieChart.component.scss',
 })
 export class PieChartComponent implements OnChanges {
-	@Input() olympics: Olympic[] = [];
-	@Input() formatedOlympicsData: ChartData[] = [];
+	@Input() olympics: Olympic[] | null = null;
+	@Input() formatedOlympicsData?: ChartData[];
 	showLabels: boolean = true;
+	faMedal = faMedal;
 
 	constructor(private router: Router) {
 		Object.assign(this, this.olympics, this.formatedOlympicsData);
 	}
 
 	ngOnChanges(changes: SimpleChanges): void {
-		if (changes['olympics'] && this.olympics.length) {
+		if (changes['olympics'] && Array.isArray(this.olympics) && this.olympics.length) {
 			this.formatedOlympicsData = this.olympics.map((o: Olympic) => {
 				const totalMedals = o.participations.reduce((sum, p) => sum + p.medalsCount, 0);
 				return {

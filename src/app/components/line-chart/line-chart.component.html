@@ -6,12 +6,12 @@
                 [yAxisLabel]="yAxisLabel" [yScaleMin]="yScaleMin" [autoScale]="true">
                 <ng-template #tooltipTemplate let-model="model">
                     <div>
-                        <span>🏅{{model.value}}</span>
+                        <span><span class="pr-2"><fa-icon [icon]="faMedal"></fa-icon></span>{{model.value}}</span>
                     </div>
                 </ng-template>
                 <ng-template #seriesTooltipTemplate let-model="model">
                     <div>
-                        <span>🏅{{model[0].value}}</span>
+                        <span><span class="pr-2"><fa-icon [icon]="faMedal"></fa-icon></span>{{model[0].value}}</span>
                     </div>
                 </ng-template>
             </ngx-charts-line-chart>

@@ -10,7 +10,7 @@ import { Olympic } from '../../core/models/Olympic';
 	styleUrl: './detail.component.scss',
 })
 export class DetailComponent implements OnInit, OnDestroy {
-	public olympics$!: Observable<Olympic[]>;
+	public olympics$!: Observable<Olympic[] | null>;
 	public errorMessage$!: Observable<string | null>;
 	public loading$!: Observable<boolean>;
 	private destroy$ = new Subject<void>();
@@ -36,8 +36,6 @@ export class DetailComponent implements OnInit, OnDestroy {
 					this.entries = olympic.participations?.length;
 					this.medals = olympic.participations?.reduce((sum, item) => sum + item.medalsCount, 0);
 					this.athletes = olympic.participations?.reduce((sum, item) => sum + item.athleteCount, 0);
-				} else {
-					this.router.navigateByUrl(`/*`);
 				}
 			}
 		});

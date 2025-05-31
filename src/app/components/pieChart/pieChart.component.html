@@ -1,18 +1,14 @@
 <div class="w-full max-w-2xl mx-auto ">
+
     <div class="relative aspect-square flex justify-center">
-        <ng-container *ngIf="formatedOlympicsData; else noData">
-            <ngx-charts-pie-chart [results]="formatedOlympicsData" [labels]="showLabels" (select)="onSelect($event)">
-                <ng-template #tooltipTemplate let-model="model">
-                    <div class="flex flex-col text-lg bg-blue-600 text-white rounded-lg w-1"
-                        style="background-color: #04838f; width: 100%;">
-                        <span>{{model.name}}</span>
-                        <span>🏅{{model.value}}</span>
-                    </div>
-                </ng-template>
-            </ngx-charts-pie-chart>
-        </ng-container>
-        <ng-template #noData>
-            <div>No data to show</div>
-        </ng-template>
+        <ngx-charts-pie-chart [results]="formatedOlympicsData" [labels]="showLabels" (select)="onSelect($event)">
+            <ng-template #tooltipTemplate let-model="model">
+                <div class="flex flex-col text-lg bg-blue-600 text-white rounded-lg w-1"
+                    style="background-color: #04838f; width: 100%;">
+                    <span>{{model.name}}</span>
+                    <span><span class="pr-2"><fa-icon [icon]="faMedal"></fa-icon></span>{{model.value}}</span>
+                </div>
+            </ng-template>
+        </ngx-charts-pie-chart>
     </div>
 </div>

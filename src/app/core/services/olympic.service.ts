@@ -9,7 +9,7 @@ import { Olympic } from '../models/Olympic';
 })
 export class OlympicService {
 	private olympicUrl = './assets/mock/olympic.json';
-	private olympics$ = new BehaviorSubject<Olympic[]>([]);
+	private olympics$ = new BehaviorSubject<Olympic[] | null>(null);
 	private loading$ = new BehaviorSubject<boolean>(false);
 	private errorMessage$ = new BehaviorSubject<string | null>(null);
 
@@ -27,8 +27,8 @@ export class OlympicService {
 			catchError((err: HttpErrorResponse) => {
 				const msg = this._buildErrorMessage(err);
 				this.errorMessage$.next(msg);
-				this.olympics$.next([]);
-				return of<Olympic[]>([]);
+				this.olympics$.next(null);
+				return of<Olympic[] | null>(null);
 			}),
 			finalize(() => {
 				this.loading$.next(false);

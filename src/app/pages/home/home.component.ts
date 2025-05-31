@@ -9,7 +9,7 @@ import { Olympic } from '../../core/models/Olympic';
 	styleUrls: ['./home.component.scss'],
 })
 export class HomeComponent implements OnInit {
-	public olympics$!: Observable<Olympic[]>;
+	public olympics$!: Observable<Olympic[] | null>;
 	private destroy$!: Subject<boolean>;
 	public errorMessage$!: Observable<string | null>;
 	public loading$!: Observable<boolean>;
